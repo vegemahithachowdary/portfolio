@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vege Mahitha Chowdary - Resume</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #a8dadc; /* Soft teal */
+      --secondary-color: #f1faee; /* Soft white */
+      --accent-color: #f4f1de; /* Cream */
+      --tertiary-color: #e9c46a; /* Soft yellow */
+      --text-color: #264653; /* Dark teal */
+      --shadow: rgba(168, 218, 220, 0.2);
+      --hover-shadow: rgba(168, 218, 220, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background: linear-gradient(to bottom, var(--secondary-color), var(--accent-color));
+      overflow-x: hidden;
+    }
+
+    /* Scroll progress bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: var(--primary-color);
+      z-index: 1000;
+      transition: width 0.3s ease;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 0 50px;
+      background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center / cover;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 10px 30px var(--shadow);
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+
+    .profile {
+      text-align: center;
+      margin-right: 50px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid var(--primary-color);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-color);
+      box-shadow: 0 5px 15px var(--shadow);
+    }
+
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .profile-img img:hover {
+      transform: scale(1.05);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+
+    .contact {
+      margin: 20px 0;
+      font-size: 1.1rem;
+    }
+
+    .contact i {
+      margin-right: 10px;
+      color: var(--primary-color);
+    }
+
+    .linkedin-btn {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 10px 20px;
+      background: var(--primary-color);
+      color: var(--text-color);
+      text-decoration: none;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .linkedin-btn:hover {
+      background: var(--tertiary-color);
+      box-shadow: 0 0 10px var(--hover-shadow);
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      font-weight: 300;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    /* Section Styles */
+    section {
+      background: rgba(255, 255, 255, 0.9);
+      margin: 50px 0;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px var(--shadow);
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.6s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    section h2:hover {
+      text-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    }
+
+    section h2 i {
+      margin-right: 10px;
+    }
+
+    .divider {
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+      margin: 20px 0;
+      animation: slideIn 1s ease-in-out;
+    }
+
+    .education-item, .skill-item, .experience-item, .project-item, .publication-item, .language-item {
+      margin-bottom: 20px;
+      padding: 20px;
+      background: var(--accent-color);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .education-item:hover, .skill-item:hover, .experience-item:hover, .project-item:hover, .publication-item:hover, .language-item:hover {
+      box-shadow: 0 5px 15px var(--shadow);
+      transform: translateY(-5px);
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--primary-color);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: -30px;
+      top: 10px;
+      width: 20px;
+      height: 20px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      border: 3px solid var(--secondary-color);
+    }
+
+    .timeline-content {
+      background: var(--accent-color);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      box-shadow: 0 10px 25px var(--hover-shadow);
+    }
+
+    .timeline-date {
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .skill-category {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .skill-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .skill-list li {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 5px 10px;
+      margin: 5px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .skill-list li:hover {
+      transform: scale(1.1);
+      background: var(--tertiary-color);
+      box-shadow: 0 0 10px var(--hover-shadow);
+    }
+
+    /* Back to Top Button */
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    #back-to-top.show {
+      opacity: 1;
+    }
+
+    #back-to-top:hover {
+      background: #0056b3;
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+      }
+
+      section {
+        padding: 20px;
+      }
+
+      .contact {
+        font-size: 1rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="progress-bar"></div>
+
+  <header>
+    <div class="profile">
+      <div class="profile-img">
+        <img src="me.jpg" alt="Vege Mahitha Chowdary">
+      </div>
+    </div>
+    <div class="container">
+      <h1>Vege Mahitha Chowdary</h1>
+      <div class="contact">
+        <i class="fas fa-phone"></i> +91 9603221113 |
+        <i class="fas fa-envelope"></i> mahithasatyanarayana05@gmail.com
+      </div>
+      <a href="https://linkedin.com/in/mahitha-chowdary-3247072b9" class="linkedin-btn" target="_blank">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      <p class="tagline">“Aspiring Computer Science Engineer | Passionate About Technology and Innovation”</p>
+    </div>
+  </header>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="container">
+      <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+      <div class="divider"></div>
+      <div class="education-item">
+        <h3>Koneru Lakshmaiah Educational Foundation</h3>
+        <p>Computer Science and Engineering – 8.63/10 (2023–2027)</p>
+      </div>
+      <div class="education-item">
+        <h3>Sri Srinivasa Gravity Junior College</h3>
+        <p>Intermediate – 799/1000 (2021–2023)</p>
+      </div>
+      <div class="education-item">
+        <h3>Ashoka High School</h3>
+        <p>Secondary Education – 600/600 (2020–2021)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <h2><i class="fas fa-code"></i> Skills</h2>
+      <div class="divider"></div>
+      <div class="skill-item">
+        <p class="skill-category">Programming:</p>
+        <ul class="skill-list">
+          <li>C</li><li>Java</li><li>Python</li>
+        </ul>
+      </div>
+      <div class="skill-item">
+        <p class="skill-category">Web Technologies:</p>
+        <ul class="skill-list">
+          <li>HTML</li><li>CSS</li><li>React</li>
+        </ul>
+      </div>
+      <div class="skill-item">
+        <p class="skill-category">Tools:</p>
+        <ul class="skill-list">
+          <li>Git</li><li>PowerBI</li><li>Linux</li><li>WordPress</li><li>MySQL</li>
+        </ul>
+      </div>
+      <div class="skill-item">
+        <p class="skill-category">Soft Skills:</p>
+        <ul class="skill-list">
+          <li>Communication</li><li>Teamwork</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Experience -->
+  <section id="experience">
+    <div class="container">
+      <h2><i class="fas fa-briefcase"></i> Work Experience</h2>
+      <div class="divider"></div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>Associate Developer Intern, 4SightAI</h3>
+            <p class="timeline-date">4 months</p>
+            <p>Assisted in designing, developing, and testing AI-driven web applications. Collaborated with senior developers to build responsive front-end components and integrate APIs for better performance.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>Child and Youth Wing Coordinator, Center For Extension Activities</h3>
+            <p class="timeline-date">2023–Present</p>
+            <p>Engaged with students and led social initiatives such as food and clothing donations to the elderly and underprivileged.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+      <div class="divider"></div>
+      <div class="project-item">
+        <h3>Online Portfolio</h3>
+        <p>A personal website showcasing projects, achievements, and skills using HTML, CSS, and JavaScript for interactivity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section id="publications">
+    <div class="container">
+      <h2><i class="fas fa-book"></i> Publications</h2>
+      <div class="divider"></div>
+      <div class="publication-item">
+        <p>“A Novel Approach to College Physical Education Merging Flipped Classroom Strategies with Outcome Based Education (OBE) Principles for Enhanced Learning” (Under Review)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Languages -->
+  <section id="languages">
+    <div class="container">
+      <h2><i class="fas fa-language"></i> Languages</h2>
+      <div class="divider"></div>
+      <div class="language-item"><p>Telugu – Professional Working Proficiency</p></div>
+      <div class="language-item"><p>English – Professional Working Proficiency</p></div>
+      <div class="language-item"><p>Hindi – Elementary Proficiency</p></div>
+    </div>
+  </section>
+
+  <!-- Back to Top -->
+  <button id="back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+    // Scroll Progress Bar
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      document.getElementById('progress-bar').style.width = scrollPercent + '%';
+    });
+
+    // Intersection Observer animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+    // Back to Top
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) backToTopBtn.classList.add('show');
+      else backToTopBtn.classList.remove('show');
+    });
+    backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>
